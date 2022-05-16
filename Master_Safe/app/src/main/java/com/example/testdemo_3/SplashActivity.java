@@ -16,7 +16,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
@@ -67,26 +66,23 @@ public class SplashActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what){
                 case UPDATE_VERSION:
-                    // 1.弹出对话框，提示用户更新
+                    //弹出对坏框，提示用户更新
                     showUpdateDialog();
                     break;
                 case ENTER_HOME:
-                    // 2.直接进入应用程序主界面
+                    //进入主界面，activity跳转过程
                     enterHome();
                     break;
                 case URL_ERROR:
-                    // 3.弹出URL错误
-                    ToastUtil.show(SplashActivity.this,"url异常");
+                    ToastUtil.show(getApplicationContext(),"url异常");
                     enterHome();
                     break;
                 case IO_ERROR:
-                    // 4.弹出IO错误
-                    ToastUtil.show(SplashActivity.this,"IO异常");
+                    ToastUtil.show(getApplicationContext(),"地区异常");
                     enterHome();
                     break;
                 case JSON_ERROR:
-                    // 5.弹出JSON错误
-                    ToastUtil.show(SplashActivity.this,"json异常");
+                    ToastUtil.show(getApplicationContext(),"json解析异常");
                     enterHome();
                     break;
                 default:break;
@@ -106,19 +102,27 @@ public class SplashActivity extends AppCompatActivity {
         //设置描述内容
         builder.setMessage(mVersionDes);
         //设置按钮，立即更新
-        builder.setPositiveButton("立即更新",((DialogInterface dialogInterface, int i) -> {
+        builder.setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
                 //下载apk，apk链接地址
                 downloadApk();
-        }));
-
-        builder.setNegativeButton("稍后再说", ((DialogInterface dialog, int which) -> {
+            }
+        });
+        builder.setNegativeButton("稍后再说", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 // 取消对话框，进入主界面
                 enterHome();
-        }));// 消极按钮，“否”
-        builder.setOnCancelListener((DialogInterface dialog) -> {
+            }
+        });// 消极按钮，“否”
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
                 // 按下回退后，进入主界面，然后隐藏对话框
                 enterHome();
                 dialog.dismiss();
+            }
         });// 回退按钮
         builder.show();
     }
