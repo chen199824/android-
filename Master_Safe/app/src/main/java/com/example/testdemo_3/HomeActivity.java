@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,25 +55,22 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void initData() {
         // 1.初始化每个图标的标题
-        mTitleStrs = new String[]{"手机防盗","通信卫士","软件管理","进程管理","流量统计","手机杀毒","缓存清理","高级工具","设置中心"};
+        mTitleStrs = new String[]{"手机防盗", "通信卫士", "软件管理", "进程管理", "流量统计", "手机杀毒", "缓存清理", "高级工具", "设置中心"};
         // 2.初始化每个图标的图像
-        mDrawableIds = new int[]{R.drawable.home_safe,R.drawable.home_callmsgsafe,R.drawable.home_apps,R.drawable.home_taskmanager,R.drawable.home_netmanager,R.drawable.home_trojan,R.drawable.home_sysoptimize,R.drawable.home_tools,R.drawable.home_settings};
+        mDrawableIds = new int[]{R.drawable.home_safe, R.drawable.home_callmsgsafe, R.drawable.home_apps, R.drawable.home_taskmanager, R.drawable.home_netmanager, R.drawable.home_trojan, R.drawable.home_sysoptimize, R.drawable.home_tools, R.drawable.home_settings};
         // 3.为GridView设置数据适配器
         gv_home.setAdapter(new MyAdapter());
-//        // 4.注册GridView中单个条目的点击事件
-//        gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                switch (position){
-//                    case 8:
-//                        Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        });
+        // 4.注册GridView中单个条目的点击事件
+        gv_home.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            switch (position) {
+                case 8:
+                    Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                    startActivity(intent);
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     /**
@@ -110,3 +108,5 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 }
+
+
