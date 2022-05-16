@@ -3,20 +3,26 @@ package com.example.testdemo_3;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.testdemo_3.untils.ToastUtil;
 import com.example.testdemo_3.untils.StreamUtil;
 import com.lidroid.xutils.HttpUtils;
@@ -52,7 +58,6 @@ public class SplashActivity extends AppCompatActivity {
     //本地版本号（成员变量）
     private int mLocalVersionCode;
     private String mVersionDes;
-  //  private mHander hander;
     private String mDownloadUrl;
     private RelativeLayout rl_root;
     private static final String tag = "SplashActivity";
@@ -128,7 +133,7 @@ public class SplashActivity extends AppCompatActivity {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
             //2.获取sd路径
             String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + File.separator+"app-debug.apk";
+                    + File.separator+"mobilesafe.apk";
             //3.发送请求，获取apk，并放置到指定的路径
             HttpUtils httpUtils = new HttpUtils();
             //4.发送请求，传递参数
@@ -203,7 +208,6 @@ public class SplashActivity extends AppCompatActivity {
 //        //去掉当前activity的有title,仅限于当前页面
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
-       // hander = new mHander();
         //初始化UI
         initUI();
         //获取数据
@@ -246,7 +250,7 @@ public class SplashActivity extends AppCompatActivity {
                 long startTime = System.currentTimeMillis();
                 try {
                     //1.封装url地址
-                    URL url = new URL("http:/10.0.2.2:8080/update.json");
+                    URL url = new URL("http://10.0.2.2:8080/update.json");
                     //2.开启一个连接
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         //3.设置常见请求参数
@@ -348,29 +352,4 @@ public class SplashActivity extends AppCompatActivity {
         tv_version_name = findViewById(R.id.tv_version_name);
         rl_root = findViewById(R.id.rl_root);
     }
-//    private class mHander extends Handler
-//    {
-//        @Override
-//        public void handleMessage(@NonNull Message msg) {
-//            switch (msg.what){
-//                case UPDATE_VERSION:
-//                    //弹出对坏框，提示用户更新
-//                    showUpdateDialog();
-//                    break;
-//                case ENTER_HOME:
-//                    //进入主界面，activity跳转过程
-//                    enterHome();
-//                    break;
-//                case URL_ERROR:
-//                    ToastUtil.show(getApplicationContext(),"url异常");
-//                    break;
-//                case IO_ERROR:
-//                    ToastUtil.show(getApplicationContext(),"地区异常");
-//                    break;
-//                case JSON_ERROR:
-//                    ToastUtil.show(getApplicationContext(),"json解析异常");
-//                    break;
-//            }
-//        }
-//    }
 }
