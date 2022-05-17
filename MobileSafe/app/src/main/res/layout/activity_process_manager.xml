@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
     <ListView
+        android:id="@+id/lv_process_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -32,14 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/bt_all"
+            android:id="@+id/bt_select_all"
             android:layout_weight="1"
             android:text="全选"
             android:textSize="14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
         <Button
-            android:id="@+id/bt_reverse"
+            android:id="@+id/bt_select_reverse"
             android:layout_weight="1"
             android:text="反选"
             android:textSize="14sp"
