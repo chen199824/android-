@@ -145,4 +145,16 @@ public class ProcessInfoProvider {
         }
         return  processInfoList;
     }
+
+    /**
+     * 杀死进程
+     * @param ctx
+     * @param processInfo
+     */
+    public static void killProcess(Context ctx, ProcessInfo processInfo) {
+        //获取ActivityManager
+        ActivityManager am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        //杀死进程
+        am.killBackgroundProcesses(processInfo.packageName);
+    }
 }

@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import com.cyz.db.domain.ProcessInfo;
 import com.cyz.mobilesafe_engine.ProcessInfoProvider;
 import com.cyz.mobilesafe_master.R;
+import com.cyz.mobilesafe_master.utils.ToastUtil;
 
 import org.w3c.dom.Text;
 
@@ -36,6 +37,8 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
     ArrayList<ProcessInfo> mCustomerList;
     MyAdapter mAapter;
     ProcessInfo mProcessInfo;
+    long mAvailSpace;
+    String strTotalSpace;
 
 
     private Handler mHandler = new Handler(){
@@ -212,11 +215,11 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
         tv_process_count.setText("进程总数:"+mProcessCount);
 
         //获取可用内存大小并且格式化
-        long availSpace = ProcessInfoProvider.getAvailSpace(this);
-        String strAvailSpace = Formatter.formatFileSize(this, availSpace);
+        mAvailSpace = ProcessInfoProvider.getAvailSpace(this);
+        String strAvailSpace = Formatter.formatFileSize(this, mAvailSpace);
         //获取总共内存大小并且格式化
         long totalSpace = ProcessInfoProvider.getTotalSpace(this);
-        String strTotalSpace = Formatter.formatFileSize(this, totalSpace);
+        strTotalSpace = Formatter.formatFileSize(this, totalSpace);
 
         tv_memory_info.setText("剩余/总共:"+strAvailSpace+"/"+strTotalSpace);
     }
@@ -303,10 +306,57 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
                 selectReverse();
                 break;
             case R.id.bt_clean:
+                clearAll();
                 break;
             case R.id.bt_setting:
                 break;
         }
+    }
+
+    private void clearAll() {
+        //1、获取选中框
+        //2、创建一个集合，记录需要杀死的进程
+        List<ProcessInfo> killProcessList = new ArrayList<>();
+        for (ProcessInfo processInfo: mCustomerList){
+            if (processInfo.isCheck){
+                //3、记录需要杀死的用户进程
+                killProcessList.add(processInfo);
+            }
+        }
+        for (ProcessInfo processInfo: mSystemList){
+            //4、记录需要杀死的用户进程
+            killProcessList.add(processInfo);
+        }
+        //5、循环遍历killProcessList，然后从mCustomerList和mSystemList移除进程
+        long totalReleaseSpace = 0;
+        for (ProcessInfo processInfo: killProcessList){
+            //6、判断当前进程在哪个集合，从所在集合中移除
+            if (mCustomerList.contains(processInfo)){
+                mCustomerList.remove(processInfo);
+            }
+            if (mSystemList.contains(processInfo)){
+                mSystemList.remove(processInfo);
+            }
+            //7、杀死进程
+            ProcessInfoProvider.killProcess(this, processInfo);
+            //记录释放空间的总大小
+            totalReleaseSpace += processInfo.memSize;
+        }
+        //8、通知数据适配器刷新
+        if (mAapter!=null){
+            mAapter.notifyDataSetChanged();
+        }
+        //9、进程总数的更新
+        mProcessCount -= killProcessList.size();
+        //10、更新可用剩余空间
+        mAvailSpace += totalReleaseSpace;
+        //11、更新进程总数和剩余空间的大小
+        tv_process_count.setText("进程总数：" + mProcessCount);
+        tv_memory_info.setText("剩余/总共" + Formatter.formatFileSize(this, mAvailSpace) + "/" + strTotalSpace);
+        //12、通过吐司告知用户
+        String totalRelease = Formatter.formatFileSize(this, totalReleaseSpace);
+        ToastUtil.show(getApplicationContext(), "杀死了"+killProcessList.size()+ "个进程，释放了" + totalRelease+"空间");
+        
     }
 
     private void selectReverse() {
