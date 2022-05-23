@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessManagerActivity extends Activity implements View.OnClickListener {
-    TextView tv_process_count, tv_memory_info;
+    TextView tv_process_count, tv_memory_info, tv_des;
     ListView lv_process_list;
     Button bt_select_all, bt_clean, bt_select_reverse, bt_setting;
     int mProcessCount;
@@ -39,6 +40,10 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
         public void handleMessage(android.os.Message msg){
             mAapter = new MyAdapter();
             lv_process_list.setAdapter(mAapter);
+
+            if (tv_des!=null && mCustomerList!=null){
+                tv_des.setText("用户进程（"+mCustomerList.size()+"）");
+            }
         };
     };
 
@@ -137,7 +142,7 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
                 String strSize = Formatter.formatFileSize(getApplicationContext(), getItem(position).memSize);
                 holder.tv_memory_info.setText(strSize);
                 //本应用不能被选中，将checkbox隐藏
-                if (getItem(position).packageName.equals(getPackageManager())){
+                if (getItem(position).packageName.equals(getPackageName())){
                     holder.cb_box.setVisibility(View.GONE);
                 }else {
                     holder.cb_box.setVisibility(View.VISIBLE);
@@ -214,6 +219,7 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
     }
 
     private void initUI() {
+        tv_des = (TextView)findViewById(R.id.tv_des);
         tv_process_count = (TextView)findViewById(R.id.tv_process_count);
         tv_memory_info = (TextView)findViewById(R.id.tv_memory_info);
         lv_process_list = (ListView) findViewById(R.id.lv_process_list);
@@ -226,6 +232,26 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
         bt_select_reverse.setOnClickListener(this);
         bt_clean.setOnClickListener(this);
         bt_setting.setOnClickListener(this);
+
+        lv_process_list.setOnScrollListener(new AbsListView.OnScrollListener(){
+
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                //滚动过程中调用方法
+                if (mCustomerList!=null && mSystemList!=null){
+                    if (firstVisibleItem>=mCustomerList.size()+1){
+                        tv_des.setText("系统进程（"+mCustomerList.size()+"）");
+                    }else {
+                        tv_des.setText("用户进程（"+mCustomerList.size()+"）");
+                    }
+                }
+            }
+        });
     }
 
     @Override
