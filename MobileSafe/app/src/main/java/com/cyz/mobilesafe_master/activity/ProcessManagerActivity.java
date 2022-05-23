@@ -7,6 +7,7 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -34,6 +35,7 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
     ArrayList<ProcessInfo> mSystemList;
     ArrayList<ProcessInfo> mCustomerList;
     MyAdapter mAapter;
+    ProcessInfo mProcessInfo;
 
 
     private Handler mHandler = new Handler(){
@@ -142,11 +144,12 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
                 String strSize = Formatter.formatFileSize(getApplicationContext(), getItem(position).memSize);
                 holder.tv_memory_info.setText(strSize);
                 //本应用不能被选中，将checkbox隐藏
-                if (getItem(position).packageName.equals(getPackageName())){
-                    holder.cb_box.setVisibility(View.GONE);
+                /*if (getItem(position).packageName.equals(getPackageName())){
+                    //holder.cb_box.setVisibility(View.GONE);
                 }else {
                     holder.cb_box.setVisibility(View.VISIBLE);
-                }
+                }*/
+                holder.cb_box.setVisibility(View.VISIBLE);
                 holder.cb_box.setChecked(getItem(position).isCheck);
 
                 return view;
@@ -248,6 +251,42 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
                         tv_des.setText("系统进程（"+mCustomerList.size()+"）");
                     }else {
                         tv_des.setText("用户进程（"+mCustomerList.size()+"）");
+                    }
+                }
+            }
+        });
+
+        lv_process_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                if (position == 0 || position == mCustomerList.size()+1){
+                    return;
+                }else {
+                    if (position<mCustomerList.size()+1){
+                        mProcessInfo = mCustomerList.get(position-1);
+                    }else {
+                        mProcessInfo = mSystemList.get(position - mCustomerList.size()-2);
+                    }
+                    if (mProcessInfo!=null){
+                        /*if (!mProcessInfo.packageName.equals(getPackageName())){
+                            //选中条目指向的对象和本应用的包名不一致，才需要去状态取反和设置单选框状态
+                            //状态取反
+                            mProcessInfo.isCheck = !mProcessInfo.isCheck;
+                            //checkbox显示状态切换
+                            //通过选中条目的view对象，找到此条目cb_box，然后切换其状态
+                            CheckBox cb_box = (CheckBox)view.findViewById(R.id.cb_box);
+                            cb_box.setChecked(mProcessInfo.isCheck);
+
+                        }*/
+
+
+                        //选中条目指向的对象和本应用的包名不一致，才需要去状态取反和设置单选框状态
+                        //状态取反
+                        mProcessInfo.isCheck = !mProcessInfo.isCheck;
+                        //checkbox显示状态切换
+                        //通过选中条目的view对象，找到此条目cb_box，然后切换其状态
+                        CheckBox cb_box = (CheckBox)view.findViewById(R.id.cb_box);
+                        cb_box.setChecked(mProcessInfo.isCheck);
                     }
                 }
             }
