@@ -295,6 +295,59 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.bt_select_all:
+                selectAll();
+                break;
+            case R.id.bt_select_reverse:
+                selectReverse();
+                break;
+            case R.id.bt_clean:
+                break;
+            case R.id.bt_setting:
+                break;
+        }
+    }
 
+    private void selectReverse() {
+        //1、将所有集合中的对象上的isCheck字段设置为flase
+        /*for (ProcessInfo processInfo: mCustomerList){
+            if (processInfo.getPackageName().equals(getPackageName())){
+                continue;
+            }
+            processInfo.isCheck = true;
+        }*/
+        for (ProcessInfo processInfo: mCustomerList){
+            processInfo.isCheck = false;
+        }
+        for (ProcessInfo processInfo: mSystemList){
+            processInfo.isCheck = false;
+        }
+
+        //2、通知数据适配器刷新
+        if (mAapter!=null){
+            mAapter.notifyDataSetChanged();
+        }
+    }
+
+    private void selectAll() {
+        //1、将所有集合中的对象上的isCheck字段设置为true
+        /*for (ProcessInfo processInfo: mCustomerList){
+            if (processInfo.getPackageName().equals(getPackageName())){
+                continue;
+            }
+            processInfo.isCheck = true;
+        }*/
+        for (ProcessInfo processInfo: mCustomerList){
+            processInfo.isCheck = true;
+        }
+        for (ProcessInfo processInfo: mSystemList){
+            processInfo.isCheck = true;
+        }
+
+        //2、通知数据适配器刷新
+        if (mAapter!=null){
+            mAapter.notifyDataSetChanged();
+        }
     }
 }
