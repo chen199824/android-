@@ -1,6 +1,7 @@
 package com.cyz.mobilesafe_master.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Formatter;
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import com.cyz.db.domain.ProcessInfo;
 import com.cyz.mobilesafe_engine.ProcessInfoProvider;
 import com.cyz.mobilesafe_master.R;
+import com.cyz.mobilesafe_master.utils.SpUtil;
 import com.cyz.mobilesafe_master.utils.ToastUtil;
 
 import org.w3c.dom.Text;
@@ -73,7 +75,11 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
         //listview中添加两个描述条目
         @Override
         public int getCount() {
-            return mCustomerList.size()+mSystemList.size()+2;
+            if (SpUtil.getBoolean(getApplicationContext(), "show_system", false)){
+                return mCustomerList.size()+mSystemList.size()+2;
+            }else {
+                return mCustomerList.size()+1;
+            }
         }
 
         @Override
@@ -309,8 +315,23 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
                 clearAll();
                 break;
             case R.id.bt_setting:
+                setting();
                 break;
         }
+    }
+
+    private void setting() {
+        Intent intent = new Intent(this, ProcessSettingActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (mAapter!=null){
+            mAapter.notifyDataSetChanged();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void clearAll() {
@@ -356,7 +377,6 @@ public class ProcessManagerActivity extends Activity implements View.OnClickList
         //12、通过吐司告知用户
         String totalRelease = Formatter.formatFileSize(this, totalReleaseSpace);
         ToastUtil.show(getApplicationContext(), "杀死了"+killProcessList.size()+ "个进程，释放了" + totalRelease+"空间");
-        
     }
 
     private void selectReverse() {
