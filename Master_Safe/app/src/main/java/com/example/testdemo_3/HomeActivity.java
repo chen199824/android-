@@ -1,6 +1,4 @@
 package com.example.testdemo_3;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +7,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -63,6 +59,30 @@ public class HomeActivity extends AppCompatActivity {
         // 4.注册GridView中单个条目的点击事件
         gv_home.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             switch (position) {
+                case 0:
+                    //手机防盗界面
+                    break;
+                case 1:
+                    //通信卫士界面
+                    break;
+                case 2:
+                    //软件管理界面
+                    break;
+                case 3:
+                    //进程控制界面
+                    break;
+                case 4:
+                    //流量统计界面
+                    break;
+                case 5:
+                    //手机杀毒界面
+                    break;
+                case 6:
+                    //缓存清理界面
+                    break;
+                case 7:
+                    //高级工具界面
+                    break;
                 case 8:
                     Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                     startActivity(intent);

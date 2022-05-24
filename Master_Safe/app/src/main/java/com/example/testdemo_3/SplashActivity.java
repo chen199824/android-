@@ -24,6 +24,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.testdemo_3.constant.ConstantValue;
+import com.example.testdemo_3.untils.SharedPreferencesUtil;
 import com.example.testdemo_3.untils.ToastUtil;
 
 import com.example.testdemo_3.untils.StreamUtil;
@@ -246,7 +248,15 @@ public class SplashActivity extends AppCompatActivity {
         mLocalVersionCode = getVersionCode();
         //3.获取服务器版本（客户端请求，服务端响应，json）
         //http:www.xxx.com/updata.json?key=value  返回请求成功，流的方式将数据读取下来
-        checkVersion();
+        if (SharedPreferencesUtil.getBoolean(this, ConstantValue.OPEN_UPDATE,false)){
+            checkVersion();
+        }
+        else {
+            // 这里不调用enterHome()，是因为直接调用会很快进入主界面（HomeActivity)，跳过闪屏页面（SplashActivity）
+            // 也不选择Thread.sleep(4000)后再enterHome()，是因为在主线程阻塞4秒风险太大，若到达7秒则会ANR
+            // 所以选择发送消息的形式来实现在没有选择“自动更新”的情况下直接进入主界面，即时发送消息后，延时4秒钟，否则会太快进入主界面
+            mHandler.sendEmptyMessageDelayed(ENTER_HOME,4000);
+        }
     }
 
     /**
