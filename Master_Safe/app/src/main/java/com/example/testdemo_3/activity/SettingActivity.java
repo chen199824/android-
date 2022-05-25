@@ -1,10 +1,11 @@
-package com.example.testdemo_3;
+package com.example.testdemo_3.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.testdemo_3.R;
 import com.example.testdemo_3.constant.ConstantValue;
 import com.example.testdemo_3.service.AddressService;
 import com.example.testdemo_3.service.BlackNumberService;

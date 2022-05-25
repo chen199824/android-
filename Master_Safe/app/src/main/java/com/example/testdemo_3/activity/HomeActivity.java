@@ -1,4 +1,4 @@
-package com.example.testdemo_3;
+package com.example.testdemo_3.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.testdemo_3.R;
 
 public class HomeActivity extends AppCompatActivity {
 
