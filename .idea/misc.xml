@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.192" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/gradient_box.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/selector_btn_common.xml" value="0.1095" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/selector_btn_delete.xml" value="0.1095" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/selector_content.xml" value="0.1095" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/selector_next_btn_bg.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/selector_number_btn_bg.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/shape_btn_pressed.xml" value="0.1095" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/drawable/shape_rectangle.xml" value="0.1095" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_contact_list.xml" value="0.11727456940222898" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_home.xml" value="0.2259963768115942" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_main.xml" value="0.2259963768115942" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_setting.xml" value="0.2259963768115942" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_setup1.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_setup2.xml" value="0.2259963768115942" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_setup3.xml" value="0.264" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_setup4.xml" value="0.14764492753623187" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_setup_over.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/activity_splash.xml" value="0.15307971014492755" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/dialog_confirm_psd.xml" value="0.1431159420289855" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/dialog_set_psd.xml" value="0.1" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/gridview_item.xml" value="0.2259963768115942" />
+        <entry key="..\:/Workspase/AndroidStudio-Workspase/mobilesafe/app/src/main/res/layout/setting_itrm_view.xml" value="0.2259963768115942" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
