@@ -8,6 +8,12 @@
         <entry key="..\:/Program Files (x86)/AndroidWork/TestDemo_3/app/src/main/res/layout/activity_home.xml" value="0.23020833333333332" />
         <entry key="..\:/Program Files (x86)/AndroidWork/TestDemo_3/app/src/main/res/layout/activity_splash.xml" value="0.6" />
         <entry key="..\:/Program Files (x86)/AndroidWork/TestDemo_3/app/src/main/res/layout/gridview_item.xml" value="0.4" />
+        <entry key="..\:/android--main/Master_Safe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/android--main/Master_Safe/app/src/main/res/drawable/selector_balcknumber_delete_btn_bg.xml" value="0.1" />
+        <entry key="..\:/android--main/Master_Safe/app/src/main/res/layout/activity_blacknumber.xml" value="0.2421875" />
+        <entry key="..\:/android--main/Master_Safe/app/src/main/res/layout/activity_setting.xml" value="0.12335359675785208" />
+        <entry key="..\:/android--main/Master_Safe/app/src/main/res/layout/dialog_add_blacknumber.xml" value="0.264" />
+        <entry key="..\:/android--main/Master_Safe/app/src/main/res/layout/listview_blacknumber_item.xml" value="0.264" />
       </map>
     </option>
   </component>

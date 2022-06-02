@@ -1,10 +1,11 @@
-package com.example.testdemo_3;
+package com.example.testdemo_3.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.testdemo_3.R;
 import com.example.testdemo_3.constant.ConstantValue;
 import com.example.testdemo_3.service.AddressService;
 import com.example.testdemo_3.service.BlackNumberService;
@@ -67,7 +68,7 @@ public class SettingActivity extends Activity {
      */
     private void initBlacknumber() {
         final SettingItemView siv_blacknumber = (SettingItemView) findViewById(R.id.siv_blacknumber);
-        boolean isRunning = ServiceUtil.isRunning(this, "com/example/testdemo_3/service/BlackNumberService");
+        boolean isRunning = ServiceUtil.isRunning(this, "com.example.testdemo_3.service.BlackNumberService");
         siv_blacknumber.setCheck(isRunning);
 
         siv_blacknumber.setOnClickListener((View v)-> {
