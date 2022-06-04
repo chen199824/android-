@@ -72,6 +72,7 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case 3:
                     //进程控制界面
+                    startActivity(new Intent(getApplicationContext(), ProcessManagerActivity.class));
                     break;
                 case 4:
                     //流量统计界面
