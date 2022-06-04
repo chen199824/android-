@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.testdemo_3.R;
+import com.example.testdemo_3.constant.ConstantValue;
 import com.example.testdemo_3.service.AddressService;
 import com.example.testdemo_3.service.BlackNumberService;
 import com.example.testdemo_3.service.WatchDogService;
-import com.example.testdemo_3.untils.ConstantValue;
-import com.example.testdemo_3.untils.ServiceUtil;
-import com.example.testdemo_3.untils.SpUtil;
+import com.example.testdemo_3.utils.ServiceUtil;
+import com.example.testdemo_3.utils.SpUtil;
 import com.example.testdemo_3.view.SettingClickView;
 import com.example.testdemo_3.view.SettingItemView;
 
