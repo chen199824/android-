@@ -73,12 +73,14 @@ public class HomeActivity extends AppCompatActivity {
                 case 3:
                     //进程控制界面
                     startActivity(new Intent(getApplicationContext(), ProcessManagerActivity.class));
+
                     break;
                 case 4:
                     //流量统计界面
                     break;
                 case 5:
                     //手机杀毒界面
+                    startActivity(new Intent(getApplicationContext(),AnitVirusActivity.class));
                     break;
                 case 6:
                     //缓存清理界面

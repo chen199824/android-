@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestDemo_3">
-
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
@@ -27,7 +26,6 @@
         <activity android:name="com.example.testdemo_3.activity.ProcessManagerActivity"/>
         <activity android:name="com.example.testdemo_3.activity.ProcessSettingActivity"/>
         <service android:name="com.example.testdemo_3.service.LockScreenService"/>
-
     </application>
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
