@@ -1,9 +1,7 @@
-package com.example.testdemo_3.untils;
+package com.example.testdemo_3.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import java.security.Key;
 
 public class SpUtil {
     private static SharedPreferences sp;
